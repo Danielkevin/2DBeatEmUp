@@ -60,6 +60,7 @@
     <Compile Include="Assets\Script\Character\0_MainBehaviour\CharacterData.cs" />
     <Compile Include="Assets\Script\Character\0_MainBehaviour\CharacterHandler.cs" />
     <Compile Include="Assets\Script\Character\0_MainBehaviour\CharacterAttack.cs" />
+    <Compile Include="Assets\Script\Character\Player\PlayerMove.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\SkyBox\Fantasy Skybox FREE\Readme.txt" />

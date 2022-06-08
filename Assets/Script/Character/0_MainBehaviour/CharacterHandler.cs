@@ -4,15 +4,20 @@ using UnityEngine;
 
 public class CharacterHandler : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField] CharacterData playerData; //Get data player
+    [SerializeField] PlayerMove playerMove;
 
-    // Update is called once per frame
-    void Update()
+    #region Variables
+    //private float movementSpeed;
+    //public float MovementSpeed { get => movementSpeed; set => movementSpeed = value; }
+    #endregion
+
+    #region Functions
+    public void PlayerMovement() => playerMove.Movement(playerData.MovementSpeed);
+    #endregion
+
+    private void Update()
     {
-        
+        PlayerMovement();
     }
 }
