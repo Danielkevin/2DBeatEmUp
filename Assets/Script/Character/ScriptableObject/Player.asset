@@ -13,3 +13,5 @@ MonoBehaviour:
   m_Name: Player
   m_EditorClassIdentifier: 
   movementSpeed: 5
+  healthPoint: 60
+  atkDmg: 30

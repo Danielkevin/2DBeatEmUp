@@ -56,11 +56,12 @@
     <Analyzer Include="C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Script\Character\Player\PlayerMove.cs" />
     <Compile Include="Assets\Script\Character\0_MainBehaviour\CharacterMove.cs" />
     <Compile Include="Assets\Script\Character\0_MainBehaviour\CharacterData.cs" />
     <Compile Include="Assets\Script\Character\0_MainBehaviour\CharacterHandler.cs" />
     <Compile Include="Assets\Script\Character\0_MainBehaviour\CharacterAttack.cs" />
-    <Compile Include="Assets\Script\Character\Player\PlayerMove.cs" />
+    <Compile Include="Assets\Script\Character\0_MainBehaviour\CharacterControl.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\SkyBox\Fantasy Skybox FREE\Readme.txt" />

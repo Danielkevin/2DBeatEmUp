@@ -4,15 +4,24 @@ using UnityEngine;
 
 public class CharacterAttack : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] private Transform attackPoint;
+    [SerializeField] float attackRange = 0.5f;
+    [SerializeField] LayerMask hostileLayers;
+
+    public virtual void MeleeAttack()
     {
-        
+        Collider[] charHitList = Physics.OverlapSphere(attackPoint.position, attackRange, hostileLayers);
+
+        foreach(Collider hostile in charHitList)
+        {
+            Debug.Log("HIT!!  ==>   " + hostile.name);
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnDrawGizmosSelected()
     {
-        
+        if (attackPoint == null) return;
+
+        Gizmos.DrawWireSphere(attackPoint.position, attackRange);
     }
 }
