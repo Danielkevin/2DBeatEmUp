@@ -6,11 +6,17 @@ public class CharacterHandler : MonoBehaviour
 {
     [SerializeField] CharacterData charData; //Get data player
     [SerializeField] CharacterMove charMove; //Get player move Script, can call function through here
-    [SerializeField] CharacterAttack playerAttack; //Get player attack, can access function through here
+    [SerializeField] CharacterAttack attack; //Get player attack, can access function through here
+    [SerializeField] CharacterHealthHandler healthHandler; //Get player attack, can access function through here
+    private float lastTimeAtk;
+    [SerializeField] private float healthPoint;
 
     public CharacterData CharData { get => charData; set => charData = value; }
     public CharacterMove CharMove { get => charMove; set => charMove = value; }
-    public CharacterAttack PlayerAttack1 { get => playerAttack; set => playerAttack = value; }
+    public CharacterAttack Attack { get => attack; set => attack = value; }
+    public float LastTimeAtk { get => lastTimeAtk; set => lastTimeAtk = value; }
+    public float HealthPoint { get => healthPoint; set => healthPoint = value; }
+    public CharacterHealthHandler HealthHandler { get => healthHandler; set => healthHandler = value; }
 
     #region Variables
 
@@ -18,7 +24,12 @@ public class CharacterHandler : MonoBehaviour
 
     #region Functions
     public void PlayerMovement() => charMove.Movement(charData.MovementSpeed);
-    public void PlayerAttack() => playerAttack.MeleeAttack();
+    public void CharAttack() => attack.MeleeAttack();
     public void CharFlip() => charMove.Flip();
+    public void GetHit(float damage) => healthPoint = healthHandler.GetHit(healthPoint, damage);
+    public float GetHealth()
+    {
+        return healthPoint;
+    }
     #endregion
 }

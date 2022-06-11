@@ -5,7 +5,7 @@ using UnityEngine;
 public class CharacterMove : MonoBehaviour
 {
     [SerializeField] protected CharacterHandler charHandler;
-    protected bool isFacingLeft = false;
+    [SerializeField] protected bool isFacingLeft = false;
     public bool IsFacingLeft { get => isFacingLeft; set => isFacingLeft = value; }
 
     public virtual void Movement(float moveSpeed)
@@ -25,5 +25,5 @@ public class CharacterMove : MonoBehaviour
         }
     }
 
-    protected virtual void Attack() => charHandler.PlayerAttack();
+    protected virtual void Attack() => charHandler.CharAttack();
 }

@@ -7,14 +7,17 @@ public class CharacterAttack : MonoBehaviour
     [SerializeField] private Transform attackPoint;
     [SerializeField] float attackRange = 0.5f;
     [SerializeField] LayerMask hostileLayers;
+    [SerializeField] CharacterHandler charHandler;
+    List<Collider> charHitList;
 
     public virtual void MeleeAttack()
     {
-        Collider[] charHitList = Physics.OverlapSphere(attackPoint.position, attackRange, hostileLayers);
-
+        charHitList = new List<Collider>(Physics.OverlapSphere(attackPoint.position, attackRange, hostileLayers));
         foreach(Collider hostile in charHitList)
         {
-            Debug.Log("HIT!!  ==>   " + hostile.name);
+            CharacterHandler charComponent = hostile.GetComponent<CharacterHandler>();
+            charComponent.GetHit(charHandler.CharData.AtkDmg);
+            Debug.Log("HIT!!  ==>   " + hostile.name + " By " + this.name);
         }
     }
 
