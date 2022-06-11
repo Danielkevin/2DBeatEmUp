@@ -16,9 +16,11 @@ public class CharacterAttack : MonoBehaviour
         foreach(Collider hostile in charHitList)
         {
             CharacterHandler charComponent = hostile.GetComponent<CharacterHandler>();
-            charComponent.GetHit(charHandler.CharData.AtkDmg);
+            if(charComponent != null)
+                charComponent.GetHit(charHandler.CharData.AtkDmg);
             Debug.Log("HIT!!  ==>   " + hostile.name + " By " + this.name);
         }
+        charHitList.Clear();
     }
 
     private void OnDrawGizmosSelected()

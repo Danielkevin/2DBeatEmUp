@@ -26,7 +26,7 @@ Transform:
   m_GameObject: {fileID: 946343393216379615}
   m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 6.666666, y: 0.6902399, z: 6.666666}
+  m_LocalScale: {x: 0.55082, y: 0.55082, z: 0.55082}
   m_Children: []
   m_Father: {fileID: 4902815936773553986}
   m_RootOrder: 1
@@ -106,7 +106,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4902815936490023487}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 3.59, y: 4.47, z: 0}
+  m_LocalPosition: {x: -0.275, y: 0.29, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4902815936773553986}
@@ -129,6 +129,7 @@ GameObject:
   - component: {fileID: 4902815936773553990}
   - component: {fileID: 4902815936773554013}
   - component: {fileID: 6536672982299313218}
+  - component: {fileID: 1076923049287967289}
   m_Layer: 6
   m_Name: Bandit
   m_TagString: Red
@@ -144,8 +145,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4902815936773553988}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.87, y: 0, z: -0.98}
-  m_LocalScale: {x: 0.15, y: 0.15, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 2.5, y: 2.5, z: 2.5}
   m_Children:
   - {fileID: 4902815936490023486}
   - {fileID: 6465185054835989910}
@@ -192,8 +193,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 5
-  m_Sprite: {fileID: 21300000, guid: fb06110099b646c438bd1ac09d0affee, type: 3}
-  m_Color: {r: 0.8784314, g: 0.17311373, b: 0.10196076, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 71e5ebaa762fbef4d84e53509a3cc141, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -221,7 +222,7 @@ NavMeshAgent:
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
-  m_Height: 7
+  m_Height: 0.4
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
@@ -252,8 +253,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 2.4699998, y: 7.0499997, z: 0.2}
-  m_Center: {x: 0, y: 3.5249999, z: 0}
+  m_Size: {x: 0.38830665, y: 0.44655076, z: 0.17502849}
+  m_Center: {x: 0, y: 0.16901708, z: 0}
 --- !u!114 &4902815936773553991
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -267,7 +268,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackPoint: {fileID: 4902815936490023486}
-  attackRange: 0.5
+  attackRange: 0.6
   hostileLayers:
     serializedVersion: 2
     m_Bits: 128
@@ -289,6 +290,7 @@ MonoBehaviour:
   attack: {fileID: 4902815936773553991}
   healthHandler: {fileID: 6536672982299313218}
   healthPoint: 50
+  animator: {fileID: 1076923049287967289}
 --- !u!114 &4902815936773554013
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -302,7 +304,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   charHandler: {fileID: 4902815936773553990}
-  isFacingLeft: 0
+  isFacingLeft: 1
 --- !u!114 &6536672982299313218
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -315,3 +317,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 522511c36baa78c49b8f001f8d8bb17e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!95 &1076923049287967289
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4902815936773553988}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 33d8c413245f06945b3f17d93fa18d34, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

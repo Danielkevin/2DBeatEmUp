@@ -9,6 +9,14 @@ public class PlayerMove : CharacterMove
         float x = Input.GetAxis("Horizontal") * moveSpeed;
         float z = Input.GetAxis("Vertical") * moveSpeed;
         transform.position += new Vector3(x, 0, z) * Time.deltaTime;
+        if(x!=0 || z != 0)
+        {
+            charHandler.Animator.SetBool("isRun", true);
+        }
+        else
+        {
+            charHandler.Animator.SetBool("isRun", false);
+        }
         if (x < 0 && !isFacingLeft)
         {
             Flip();

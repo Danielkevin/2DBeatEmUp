@@ -18,10 +18,11 @@ public class CharacterControl : MonoBehaviour
 
     private void Start()
     {
-        foreach (CharacterHandler npc in npcList)
-        {
-            agentList.Add(npc.GetComponent<NavMeshAgent>());
-        }
+        playerHandler.HealthPoint = playerHandler.CharData.HealthPoint;
+        //foreach (CharacterHandler npc in npcList)
+        //{
+        //    agentList.Add(npc.GetComponent<NavMeshAgent>());
+        //}
     }
 
     void Update()
@@ -144,8 +145,23 @@ public class CharacterControl : MonoBehaviour
         return pos;
     }
 
-    public void AddActiveNPC(CharacterHandler character) => npcList.Add(character);
-    public void KillActiveNPC(CharacterHandler character) => npcList.Remove(character);
+    public void AddActiveNPC(CharacterHandler character)
+    {
+        agentList.Add(character.GetComponent<NavMeshAgent>());
+        npcList.Add(character);
+    }
+    public void KillActiveNPC(CharacterHandler character) 
+    {
+        if(character.tag.Equals("Blue"))
+        {
+            teamManager.BlueTeam.Remove(character.gameObject);
+        }
+        else if(character.tag.Equals("Red"))
+        {
+            teamManager.RedTeam.Remove(character.gameObject);
+        }
+        npcList.Remove(character); 
+    }
 
     void Attack(int index)
     {

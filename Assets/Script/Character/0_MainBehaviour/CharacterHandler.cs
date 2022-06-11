@@ -10,6 +10,7 @@ public class CharacterHandler : MonoBehaviour
     [SerializeField] CharacterHealthHandler healthHandler; //Get player attack, can access function through here
     private float lastTimeAtk;
     [SerializeField] private float healthPoint;
+    [SerializeField] private Animator animator;
 
     public CharacterData CharData { get => charData; set => charData = value; }
     public CharacterMove CharMove { get => charMove; set => charMove = value; }
@@ -17,6 +18,7 @@ public class CharacterHandler : MonoBehaviour
     public float LastTimeAtk { get => lastTimeAtk; set => lastTimeAtk = value; }
     public float HealthPoint { get => healthPoint; set => healthPoint = value; }
     public CharacterHealthHandler HealthHandler { get => healthHandler; set => healthHandler = value; }
+    public Animator Animator { get => animator; set => animator = value; }
 
     #region Variables
 
