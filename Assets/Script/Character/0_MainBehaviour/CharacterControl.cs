@@ -37,7 +37,6 @@ public class CharacterControl : MonoBehaviour
     #region NPC_Move
     private void NpcMove()
     {
-        Transform currTarget;
         if (npcList != null)
         {
             for (int i = 0; i < npcList.Count; i++)
@@ -45,16 +44,16 @@ public class CharacterControl : MonoBehaviour
                 if (npcList[i].GetHealth() > 0)
                 {
 
-                    currTarget = GenerateCurrTarget(npcList[i].transform);
+                    npcList[i].CurrTarget = GenerateCurrTarget(npcList[i].transform);
                     //Movement is below
-                    float distance = (currTarget.position - npcList[i].transform.position).magnitude;
+                    float distance = (npcList[i].CurrTarget.position - npcList[i].transform.position).magnitude;
                     //Debug.Log(distance);
                     if (distance <= lookRadius)
                     {
                         if (agentList[i].gameObject.activeSelf)
                         {
-                            agentList[i].SetDestination(currTarget.position);
-                            Vector3 targetPosition = currTarget.position - npcList[i].transform.position;
+                            agentList[i].SetDestination(npcList[i].CurrTarget.position);
+                            Vector3 targetPosition = npcList[i].CurrTarget.position - npcList[i].transform.position;
                             //Debug.Log(npcList[i].transform.name + " Facing towards ==> " + currTarget.name + " With X Coordinate ==> " 
                             //    + targetPosition.normalized.x);
                             //Flip if statement
@@ -77,7 +76,7 @@ public class CharacterControl : MonoBehaviour
                     }
                     else
                     {
-                        currTarget = null;
+                        npcList[i].CurrTarget = null;
                     }
                 }
                 else
@@ -160,6 +159,7 @@ public class CharacterControl : MonoBehaviour
         {
             teamManager.RedTeam.Remove(character.gameObject);
         }
+        agentList.Remove(character.GetComponent<NavMeshAgent>());
         npcList.Remove(character); 
     }
 

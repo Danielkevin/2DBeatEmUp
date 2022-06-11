@@ -11,6 +11,7 @@ public class CharacterHandler : MonoBehaviour
     private float lastTimeAtk;
     [SerializeField] private float healthPoint;
     [SerializeField] private Animator animator;
+    private Transform currTarget;
 
     public CharacterData CharData { get => charData; set => charData = value; }
     public CharacterMove CharMove { get => charMove; set => charMove = value; }
@@ -19,6 +20,7 @@ public class CharacterHandler : MonoBehaviour
     public float HealthPoint { get => healthPoint; set => healthPoint = value; }
     public CharacterHealthHandler HealthHandler { get => healthHandler; set => healthHandler = value; }
     public Animator Animator { get => animator; set => animator = value; }
+    public Transform CurrTarget { get => currTarget; set => currTarget = value; }
 
     #region Variables
 
