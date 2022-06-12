@@ -48,7 +48,7 @@ public class GameManager : MonoBehaviour
     {
         if(team.Equals("Blue"))
         {
-            poolingManager.spawnBlue(blueSpawnPosition[ii]);
+            poolingManager.SpawnNPC(blueSpawnPosition[ii], team);
             ii++;
             if (ii >= blueSpawnPosition.Count)
             {
@@ -57,7 +57,7 @@ public class GameManager : MonoBehaviour
         }
         if(team.Equals("Red"))
         {
-            poolingManager.spawnRed(redSpawnPosition[ij]);
+            poolingManager.SpawnNPC(redSpawnPosition[ij], team);
             //Debug.Log("Spawned on ==> " + redSpawnPosition[ij].name);
             ij++;
             if (ij >= redSpawnPosition.Count)

@@ -80,7 +80,7 @@ public class CharacterControl : MonoBehaviour
                 {
                     if (npcList != null)
                     {
-                        npcList[i].gameObject.SetActive(false);
+                        npcList[i].SetDead();
                         Debug.Log("Kill ==> " + npcList[i].name);
                         KillActiveNPC(npcList[i]);
                     }

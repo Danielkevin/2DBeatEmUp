@@ -32,7 +32,11 @@ public class CharacterHandler : MonoBehaviour
         Debug.Log("Attack System Called");
     }
     public void CharFlip() => charMove.Flip();
-    public void GetHit(float damage) => healthPoint = healthHandler.GetHit(healthPoint, damage);
+    public void GetHit(float damage)
+    { 
+        healthPoint = healthHandler.GetHit(healthPoint, damage);
+        animator.SetTrigger("isHurt");
+    }
     public float GetHealth()
     {
         return healthPoint;
@@ -40,5 +44,13 @@ public class CharacterHandler : MonoBehaviour
     public void SetRun() => animator.SetBool("isRun", true);
     public void SetNotRun() => animator.SetBool("isRun", false);
     public void SetAttack() => animator.SetTrigger("isAttack");
+    public void SetDead() => animator.SetBool("isDead", true);
+    public void SetNotDead() => animator.SetBool("isDead", false);
+    IEnumerator Decaying()
+    {
+        yield return new WaitForSeconds(5);
+        SetNotDead();
+        this.gameObject.SetActive(false);
+    }
     #endregion
 }

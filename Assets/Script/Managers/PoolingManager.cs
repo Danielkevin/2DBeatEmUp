@@ -36,34 +36,29 @@ public class PoolingManager : MonoBehaviour
         }
     }
 
-    public CharacterHandler spawnBlue(Transform spawnPositionA)
+    public CharacterHandler SpawnNPC(Transform spawnPositionA, string teamTag)
     {
-        CharacterHandler blueArmy = bluePool[0];
-        blueArmy.transform.position = spawnPositionA.position;
-        blueArmy.transform.rotation = Quaternion.Euler(0,0,0);
-        blueArmy.CharMove.IsFacingLeft = false;
-        blueArmy.CurrTarget = null;
-        blueArmy.HealthPoint = blueArmy.CharData.HealthPoint;
-        bluePool.Remove(blueArmy);
-        bluePool.Add(blueArmy);
-        blueArmy.gameObject.SetActive(true);
-        charControl.AddActiveNPC(blueArmy);
-        return blueArmy;
-    }
-    
-    public CharacterHandler spawnRed(Transform spawnPositionB)
-    {
-        CharacterHandler redArmy = redPool[0];
-        redArmy.transform.position = spawnPositionB.position;
-        redArmy.transform.rotation = Quaternion.Euler(0, 0, 0);
-        redArmy.CharMove.IsFacingLeft = false;
-        redArmy.CurrTarget = null;
-        redArmy.HealthPoint = redArmy.CharData.HealthPoint;
-        redPool.Remove(redArmy);
-        redPool.Add(redArmy);
-        redArmy.gameObject.SetActive(true);
-        //Debug.Log("Spawn Position => " + spawnPositionB.position);
-        charControl.AddActiveNPC(redArmy);
-        return redArmy;
+        CharacterHandler army = new CharacterHandler();
+        switch(teamTag)
+        {
+            case "Blue":
+                army = bluePool[0];
+                bluePool.Remove(army);
+                bluePool.Add(army);
+                break;
+            case "Red":
+                army = redPool[0];
+                redPool.Remove(army);
+                redPool.Add(army);
+                break;
+        }
+        army.transform.position = spawnPositionA.position;
+        army.transform.rotation = Quaternion.Euler(0,0,0);
+        army.CharMove.IsFacingLeft = false;
+        army.CurrTarget = null;
+        army.HealthPoint = army.CharData.HealthPoint;
+        army.gameObject.SetActive(true);
+        charControl.AddActiveNPC(army);
+        return army;
     }
 }

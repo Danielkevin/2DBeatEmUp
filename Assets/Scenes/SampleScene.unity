@@ -2728,7 +2728,7 @@ MonoBehaviour:
   - {fileID: 1277273645}
   - {fileID: 1646415561}
   - {fileID: 1343044405}
-  maxBlueCount: 6
+  maxBlueCount: 8
   blueSpawnPosition:
   - {fileID: 1450721043}
   - {fileID: 318492943}
@@ -2752,7 +2752,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   charControl: {fileID: 776975329}
   teamManager: {fileID: 776975327}
-  maxCountBlue: 8
+  maxCountBlue: 10
   bluePrefab: {fileID: 8926439170232377324, guid: 1499e7650a7d04c46b97d9231207b9a1, type: 3}
   bluePool: []
   maxCountRed: 20
