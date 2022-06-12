@@ -13,7 +13,6 @@ MonoBehaviour:
   m_Name: BlueTeam
   m_EditorClassIdentifier: 
   movementSpeed: 5
-  healthPoint: 50
+  healthPoint: 60
   atkDmg: 20
-  lastTimeAtk: 0
   rateOfAtk: 1

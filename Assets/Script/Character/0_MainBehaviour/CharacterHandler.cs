@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class CharacterHandler : MonoBehaviour
 {
+    #region Variables
     [SerializeField] CharacterData charData; //Get data player
     [SerializeField] CharacterMove charMove; //Get player move Script, can call function through here
     [SerializeField] CharacterAttack attack; //Get player attack, can access function through here
@@ -21,21 +22,23 @@ public class CharacterHandler : MonoBehaviour
     public CharacterHealthHandler HealthHandler { get => healthHandler; set => healthHandler = value; }
     public Animator Animator { get => animator; set => animator = value; }
     public Transform CurrTarget { get => currTarget; set => currTarget = value; }
-
-    #region Variables
-
     #endregion
 
     #region Functions
     public void PlayerMovement() => charMove.Movement(charData.MovementSpeed);
-    public void CharAttack() => attack.MeleeAttack();
+    public void CharAttack()
+    {
+        attack.MeleeAttack();
+        Debug.Log("Attack System Called");
+    }
     public void CharFlip() => charMove.Flip();
     public void GetHit(float damage) => healthPoint = healthHandler.GetHit(healthPoint, damage);
     public float GetHealth()
     {
         return healthPoint;
     }
-    //public void SetRun() => animator.SetBool("isRun", true);
-    //public void SetNotRun() => animator.SetBool("isRun", false);
+    public void SetRun() => animator.SetBool("isRun", true);
+    public void SetNotRun() => animator.SetBool("isRun", false);
+    public void SetAttack() => animator.SetTrigger("isAttack");
     #endregion
 }

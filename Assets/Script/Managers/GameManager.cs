@@ -24,18 +24,6 @@ public class GameManager : MonoBehaviour
         StartCoroutine(SpawnTrigger());
     }
 
-    private void Update()
-    {
-        //if(teamManager.BlueTeam.Count < MaxBlueCount)
-        //{
-        //    Spawn("Blue");
-        //}
-        //if(teamManager.RedTeam.Count < MaxRedCount)
-        //{
-        //    Spawn("Red");
-        //}
-    }
-
 
     IEnumerator SpawnTrigger()
     {

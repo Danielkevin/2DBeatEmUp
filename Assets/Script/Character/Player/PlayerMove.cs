@@ -30,7 +30,9 @@ public class PlayerMove : CharacterMove
 
         if(Input.GetButtonDown("Fire1"))
         {
-            Attack();
+            charHandler.SetAttack();
+            //Attack();
+            Debug.Log("Player call Attack system");
         }
     }
 }

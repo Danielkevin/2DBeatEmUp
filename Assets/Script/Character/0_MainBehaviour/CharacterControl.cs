@@ -17,7 +17,7 @@ public class CharacterControl : MonoBehaviour
 
     //IF YOU OPEN THIS, Belum bisa ngejar player, ada warning NAV MESH NYA ENGGA BENAR
 
-    private void Start()
+    private void Awake()
     {
         playerHandler.HealthPoint = playerHandler.CharData.HealthPoint;
         //foreach (CharacterHandler npc in npcList)
@@ -26,7 +26,7 @@ public class CharacterControl : MonoBehaviour
         //}
     }
 
-    void Update()
+    private void FixedUpdate()
     {
         PlayerMove();
         NpcMove();
@@ -53,12 +53,8 @@ public class CharacterControl : MonoBehaviour
                     //Debug.Log(distance);
                     if (distance <= lookRadius )
                     {
-                        agentList[i].stoppingDistance = 0.8f;
+                        agentList[i].stoppingDistance = 0.7f;
                         MoveToTarget(npcList[i], i, distance);
-                        //if (!agentList[i].isStopped)
-                        //    npcList[i].SetRun();
-                        //if (agentList[i].isStopped)
-                        //    npcList[i].SetNotRun();
                         npcList[i].CurrTarget = null;
                     }
                     else
@@ -67,31 +63,23 @@ public class CharacterControl : MonoBehaviour
                         {
                             case "Blue":
                                 npcList[i].CurrTarget = playerHandler.transform;
+                                distance = (npcList[i].CurrTarget.position - npcList[i].transform.position).magnitude;
                                 agentList[i].stoppingDistance = 3;
                                 MoveToTarget(npcList[i], i, distance);
-                                //if (!agentList[i].isStopped)
-                                //    npcList[i].SetRun();
-                                //if (agentList[i].isStopped)
-                                //    npcList[i].SetNotRun();
                                 break;
                             case "Red":
                                 npcList[i].CurrTarget = patrolPoint;
+                                distance = (npcList[i].CurrTarget.position - npcList[i].transform.position).magnitude;
                                 agentList[i].stoppingDistance = 3;
                                 MoveToTarget(npcList[i], i, distance);
-                                //if (!agentList[i].isStopped)
-                                //    npcList[i].SetRun();
-                                //if (agentList[i].isStopped)
-                                //    npcList[i].SetNotRun();
                                 break;
                         }
-                        npcList[i].CurrTarget = null;
                     }
                 }
                 else
                 {
                     if (npcList != null)
                     {
-                        npcList[i].CurrTarget = null;
                         npcList[i].gameObject.SetActive(false);
                         Debug.Log("Kill ==> " + npcList[i].name);
                         KillActiveNPC(npcList[i]);
@@ -133,15 +121,6 @@ public class CharacterControl : MonoBehaviour
                 return teamManager.BlueTeam[index].transform;
         }
         return null;
-
-        //for (int i = 0; i < targetList.Count; i++)
-        //{
-        //    if (targetList[i].tag != NPCTransform.tag && targetList[i] != NPCTransform)
-        //    {
-        //        float distance = (NPCTransform.position - targetList[i].position).magnitude;
-        //        distanceList.Add(distance);
-        //    }
-        //}
     }
 
     void MoveToTarget(CharacterHandler character, int index, float distance)
@@ -150,8 +129,7 @@ public class CharacterControl : MonoBehaviour
         {
             agentList[index].SetDestination(character.CurrTarget.position);
             Vector3 targetPosition = character.CurrTarget.position - character.transform.position;
-            //Debug.Log(npcList[i].transform.name + " Facing towards ==> " + currTarget.name + " With X Coordinate ==> " 
-            //    + targetPosition.normalized.x);
+            
             //Flip if statement
             if (targetPosition.normalized.x < 0 && character.CharMove.IsFacingLeft == false)
             {
@@ -163,10 +141,17 @@ public class CharacterControl : MonoBehaviour
                 character.CharFlip();
                 character.CharMove.IsFacingLeft = false;
             }
-            //Debug.Log("THIS Tag ==> " + character.tag.ToString() + " >< Target Tag ==> " + character.CurrTarget.tag.ToString() + " With name ==> " + character.CurrTarget.name);
-            if (character.tag.Equals(character.CurrTarget.tag) ==  false && distance <= 1)
+
+            //Debug.Log(distance + " <= Distance <= " + agentList[index].name + " => stopping distance => " + agentList[index].stoppingDistance);
+            if (distance > agentList[index].stoppingDistance)
+                character.SetRun();
+            if (distance <= agentList[index].stoppingDistance)
+                character.SetNotRun();
+
+            if (character.tag.Equals(character.CurrTarget.tag) == false && distance <= 1 && !character.CurrTarget.tag.Equals("PatrolPoint"))
             {
                 Attack(index);
+                npcList[index].CurrTarget = null;
             }
         }
     }
@@ -214,8 +199,11 @@ public class CharacterControl : MonoBehaviour
         float selisihWaktu = Time.time - npcList[index].LastTimeAtk;
         if (selisihWaktu > npcList[index].CharData.RateOfAtk)
         {
-            npcList[index].CharAttack();
+            npcList[index].SetAttack();
+            //npcList[index].CharAttack();
+            Debug.Log("NPC call Attack system");
             npcList[index].LastTimeAtk = Time.time;
+            //npcList[index].CurrTarget = null;
         }
     }
 

@@ -42,6 +42,7 @@ public class PoolingManager : MonoBehaviour
         blueArmy.transform.position = spawnPositionA.position;
         blueArmy.transform.rotation = Quaternion.Euler(0,0,0);
         blueArmy.CharMove.IsFacingLeft = false;
+        blueArmy.CurrTarget = null;
         blueArmy.HealthPoint = blueArmy.CharData.HealthPoint;
         bluePool.Remove(blueArmy);
         bluePool.Add(blueArmy);
@@ -56,6 +57,7 @@ public class PoolingManager : MonoBehaviour
         redArmy.transform.position = spawnPositionB.position;
         redArmy.transform.rotation = Quaternion.Euler(0, 0, 0);
         redArmy.CharMove.IsFacingLeft = false;
+        redArmy.CurrTarget = null;
         redArmy.HealthPoint = redArmy.CharData.HealthPoint;
         redPool.Remove(redArmy);
         redPool.Add(redArmy);
