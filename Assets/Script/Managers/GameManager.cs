@@ -11,6 +11,10 @@ public class GameManager : MonoBehaviour
     [SerializeField] private float timeToSpawn;
     [SerializeField] private PoolingManager poolingManager;
     [SerializeField] private TeamManager teamManager;
+    private int redCasualities;
+    [SerializeField] private int maxKilledRed;
+    private bool isWin;
+    private bool isLose;
 
     public List<Transform> RedSpawnPosition { get => redSpawnPosition; set => redSpawnPosition = value; }
     public List<Transform> BlueSpawnPosition { get => blueSpawnPosition; set => blueSpawnPosition = value; }
@@ -24,18 +28,41 @@ public class GameManager : MonoBehaviour
         StartCoroutine(SpawnTrigger());
     }
 
+    public void AddCasualities()
+    {
+        redCasualities++;
+        if(redCasualities>=maxKilledRed)
+        {
+            WinCondition();
+        }
+    }
+
+    void WinCondition()
+    {
+        Debug.Log("Win");
+        isWin = true;
+    }
+
+    public void LoseCondition()
+    {
+        Debug.Log("Lose");
+        isLose = true;
+    }
 
     IEnumerator SpawnTrigger()
     {
-        if (teamManager.BlueTeam.Count < MaxBlueCount)
+        if (!isWin && !isLose)
         {
-            //Debug.Log("Blue Team Total ==> " + teamManager.BlueTeam.Count);
-            Spawn("Blue");
-        }
-        if (teamManager.RedTeam.Count < MaxRedCount)
-        {
-            //Debug.Log("Red Team Total ==> " + teamManager.RedTeam.Count);
-            Spawn("Red");
+            if (teamManager.BlueTeam.Count < MaxBlueCount)
+            {
+                //Debug.Log("Blue Team Total ==> " + teamManager.BlueTeam.Count);
+                Spawn("Blue");
+            }
+            if (teamManager.RedTeam.Count < MaxRedCount)
+            {
+                //Debug.Log("Red Team Total ==> " + teamManager.RedTeam.Count);
+                Spawn("Red");
+            }
         }
         yield return new WaitForSeconds(timeToSpawn);
         StartCoroutine(SpawnTrigger());
@@ -65,26 +92,6 @@ public class GameManager : MonoBehaviour
                 ij = 0;
             }
         }
-        //switch(team)
-        //{
-        //    case "Blue":
-        //poolingManager.spawnBlue(blueSpawnPosition[ii]);
-        //ii++;
-        //if (ii >= blueSpawnPosition.Count)
-        //{
-        //    ii = 0;
-        //}
-        //        break;
-        //    case "Red":
-        //poolingManager.spawnRed(redSpawnPosition[ij]);
-        //Debug.Log("Spawned on ==> " + redSpawnPosition[ij].name);
-        //ij++;
-        //if (ij >= redSpawnPosition.Count)
-        //{
-        //    ij = 0;
-        //}
-        //        break;
-        //}
     }
 
     //IEnumerator SpawnBlue(int index)

@@ -291,6 +291,7 @@ MonoBehaviour:
   healthHandler: {fileID: 6536672982299313218}
   healthPoint: 0
   animator: {fileID: 1076923049287967289}
+  boxCollider: {fileID: 4902815936773553985}
 --- !u!114 &4902815936773554013
 MonoBehaviour:
   m_ObjectHideFlags: 0

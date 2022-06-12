@@ -38,7 +38,7 @@ public class PoolingManager : MonoBehaviour
 
     public CharacterHandler SpawnNPC(Transform spawnPositionA, string teamTag)
     {
-        CharacterHandler army = new CharacterHandler();
+        CharacterHandler army = null;
         switch(teamTag)
         {
             case "Blue":
@@ -54,6 +54,7 @@ public class PoolingManager : MonoBehaviour
         }
         army.transform.position = spawnPositionA.position;
         army.transform.rotation = Quaternion.Euler(0,0,0);
+        army.SetNotDead();
         army.CharMove.IsFacingLeft = false;
         army.CurrTarget = null;
         army.HealthPoint = army.CharData.HealthPoint;

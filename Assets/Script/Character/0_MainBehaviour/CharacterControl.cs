@@ -8,6 +8,7 @@ public class CharacterControl : MonoBehaviour
     [SerializeField] CharacterHandler playerHandler;
     [SerializeField] Transform patrolPoint;
     [SerializeField] List<CharacterHandler> npcList;
+    [SerializeField] GameManager gameManager;
 
     #region AIStuff
     [SerializeField] private float lookRadius = 4f;
@@ -15,15 +16,11 @@ public class CharacterControl : MonoBehaviour
     [SerializeField] TeamManager teamManager;
     #endregion
 
-    //IF YOU OPEN THIS, Belum bisa ngejar player, ada warning NAV MESH NYA ENGGA BENAR
+    public GameManager GameManager { get => gameManager; set => gameManager = value; }
 
     private void Awake()
     {
         playerHandler.HealthPoint = playerHandler.CharData.HealthPoint;
-        //foreach (CharacterHandler npc in npcList)
-        //{
-        //    agentList.Add(npc.GetComponent<NavMeshAgent>());
-        //}
     }
 
     private void FixedUpdate()
@@ -32,7 +29,22 @@ public class CharacterControl : MonoBehaviour
         NpcMove();
     }
 
-    private void PlayerMove() => playerHandler.PlayerMovement();
+    private void PlayerMove()
+    {
+        if (playerHandler.GetHealth() > 0)
+        {
+            playerHandler.PlayerMovement();
+        }
+        else
+        {
+            if(playerHandler.Animator.GetCurrentAnimatorStateInfo(0).IsName("GetHit") == false
+                && playerHandler.Animator.GetCurrentAnimatorStateInfo(0).IsName("Death") == false)
+                playerHandler.SetHurt();
+            playerHandler.SetDead();
+            Debug.Log("Kill ==> " + playerHandler.name);
+            gameManager.LoseCondition();
+        }
+    }
 
     //Function di bawah ini merupakan function untuk menggerakan npc baik tim merah maupun putih.
     #region NPC_Move
@@ -82,6 +94,8 @@ public class CharacterControl : MonoBehaviour
                     {
                         npcList[i].SetDead();
                         Debug.Log("Kill ==> " + npcList[i].name);
+                        if (npcList[i].tag.Equals("Red"))
+                            gameManager.AddCasualities();
                         KillActiveNPC(npcList[i]);
                     }
                 }

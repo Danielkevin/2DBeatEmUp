@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Player
   m_EditorClassIdentifier: 
   movementSpeed: 3
-  healthPoint: 100
+  healthPoint: 120
   atkDmg: 30
   rateOfAtk: 0

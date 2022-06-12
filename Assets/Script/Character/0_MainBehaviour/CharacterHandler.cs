@@ -13,6 +13,7 @@ public class CharacterHandler : MonoBehaviour
     [SerializeField] private float healthPoint;
     [SerializeField] private Animator animator;
     private Transform currTarget;
+    [SerializeField] private BoxCollider boxCollider;
 
     public CharacterData CharData { get => charData; set => charData = value; }
     public CharacterMove CharMove { get => charMove; set => charMove = value; }
@@ -44,8 +45,19 @@ public class CharacterHandler : MonoBehaviour
     public void SetRun() => animator.SetBool("isRun", true);
     public void SetNotRun() => animator.SetBool("isRun", false);
     public void SetAttack() => animator.SetTrigger("isAttack");
-    public void SetDead() => animator.SetBool("isDead", true);
-    public void SetNotDead() => animator.SetBool("isDead", false);
+    public void SetHurt() => animator.SetTrigger("isHurt");
+    public void SetDead()
+    { 
+        animator.SetBool("isDead", true);
+        boxCollider.enabled = false;
+        currTarget = null;
+    }
+    public void SetNotDead()
+    {
+        animator.SetBool("isDead", false);
+        boxCollider.enabled = true;
+    }
+    public void Decay() => StartCoroutine(Decaying());
     IEnumerator Decaying()
     {
         yield return new WaitForSeconds(5);
