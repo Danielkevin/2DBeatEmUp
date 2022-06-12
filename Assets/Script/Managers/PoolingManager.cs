@@ -57,7 +57,9 @@ public class PoolingManager : MonoBehaviour
         army.SetNotDead();
         army.CharMove.IsFacingLeft = false;
         army.CurrTarget = null;
+        army.ShowHealthBar();
         army.HealthPoint = army.CharData.HealthPoint;
+        army.SetUpHealth();
         army.gameObject.SetActive(true);
         charControl.AddActiveNPC(army);
         return army;

@@ -33,6 +33,7 @@ public class CharacterHandler : MonoBehaviour
         Debug.Log("Attack System Called");
     }
     public void CharFlip() => charMove.Flip();
+    public void SetUpHealth() => healthHandler.SetUpHealth(charData.HealthPoint);
     public void GetHit(float damage)
     { 
         healthPoint = healthHandler.GetHit(healthPoint, damage);
@@ -46,6 +47,8 @@ public class CharacterHandler : MonoBehaviour
     public void SetNotRun() => animator.SetBool("isRun", false);
     public void SetAttack() => animator.SetTrigger("isAttack");
     public void SetHurt() => animator.SetTrigger("isHurt");
+    public void HideHealthBar() => healthHandler.SetHealthBarInabled();
+    public void ShowHealthBar() => healthHandler.SetHealthBarEnabled();
     public void SetDead()
     { 
         animator.SetBool("isDead", true);

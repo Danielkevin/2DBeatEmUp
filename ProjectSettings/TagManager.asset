@@ -8,6 +8,7 @@ TagManager:
   - Red
   - Wall
   - PatrolPoint
+  - HealthBar
   layers:
   - Default
   - TransparentFX

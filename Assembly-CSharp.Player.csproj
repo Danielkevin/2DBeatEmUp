@@ -72,6 +72,7 @@
     <Compile Include="Assets\Script\Character\NPC\TeamManager.cs" />
     <Compile Include="Assets\Script\Character\0_MainBehaviour\CharacterControl.cs" />
     <Compile Include="Assets\Script\Managers\State.cs" />
+    <Compile Include="Assets\Script\UI\HealthBar.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\SkyBox\Fantasy Skybox FREE\Readme.txt" />

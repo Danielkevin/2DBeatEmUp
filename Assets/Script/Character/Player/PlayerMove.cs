@@ -27,8 +27,7 @@ public class PlayerMove : CharacterMove
             Flip();
             isFacingLeft = false;
         }
-
-        if(Input.GetButtonDown("Fire1"))
+        if(Input.GetButtonUp("Fire1"))
         {
             charHandler.SetAttack();
             //Attack();

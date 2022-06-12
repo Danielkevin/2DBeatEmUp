@@ -93,6 +93,7 @@ public class CharacterControl : MonoBehaviour
                     if (npcList != null)
                     {
                         npcList[i].SetDead();
+                        npcList[i].HideHealthBar();
                         Debug.Log("Kill ==> " + npcList[i].name);
                         if (npcList[i].tag.Equals("Red"))
                             gameManager.AddCasualities();
