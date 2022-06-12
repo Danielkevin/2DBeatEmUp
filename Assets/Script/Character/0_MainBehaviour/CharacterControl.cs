@@ -6,6 +6,7 @@ using UnityEngine.AI;
 public class CharacterControl : MonoBehaviour
 {
     [SerializeField] CharacterHandler playerHandler;
+    [SerializeField] Transform patrolPoint;
     [SerializeField] List<CharacterHandler> npcList;
 
     #region AIStuff
@@ -46,36 +47,43 @@ public class CharacterControl : MonoBehaviour
 
                     npcList[i].CurrTarget = GenerateCurrTarget(npcList[i].transform);
                     //Movement is below
-                    float distance = (npcList[i].CurrTarget.position - npcList[i].transform.position).magnitude;
+                    float distance = 50;
+                    if (npcList[i].CurrTarget != null)
+                        distance = (npcList[i].CurrTarget.position - npcList[i].transform.position).magnitude;
                     //Debug.Log(distance);
-                    if (distance <= lookRadius)
+                    if (distance <= lookRadius )
                     {
-                        if (agentList[i].gameObject.activeSelf)
-                        {
-                            agentList[i].SetDestination(npcList[i].CurrTarget.position);
-                            Vector3 targetPosition = npcList[i].CurrTarget.position - npcList[i].transform.position;
-                            //Debug.Log(npcList[i].transform.name + " Facing towards ==> " + currTarget.name + " With X Coordinate ==> " 
-                            //    + targetPosition.normalized.x);
-                            //Flip if statement
-                            if (targetPosition.normalized.x < 0 && npcList[i].CharMove.IsFacingLeft == false)
-                            {
-                                npcList[i].CharFlip();
-                                npcList[i].CharMove.IsFacingLeft = true;
-                            }
-                            else if (targetPosition.normalized.x > 0 && npcList[i].CharMove.IsFacingLeft == true)
-                            {
-                                npcList[i].CharFlip();
-                                npcList[i].CharMove.IsFacingLeft = false;
-                            }
-
-                            if (distance <= 1)
-                            {
-                                Attack(i);
-                            }
-                        }
+                        agentList[i].stoppingDistance = 0.8f;
+                        MoveToTarget(npcList[i], i, distance);
+                        //if (!agentList[i].isStopped)
+                        //    npcList[i].SetRun();
+                        //if (agentList[i].isStopped)
+                        //    npcList[i].SetNotRun();
+                        npcList[i].CurrTarget = null;
                     }
                     else
                     {
+                        switch (npcList[i].tag)
+                        {
+                            case "Blue":
+                                npcList[i].CurrTarget = playerHandler.transform;
+                                agentList[i].stoppingDistance = 3;
+                                MoveToTarget(npcList[i], i, distance);
+                                //if (!agentList[i].isStopped)
+                                //    npcList[i].SetRun();
+                                //if (agentList[i].isStopped)
+                                //    npcList[i].SetNotRun();
+                                break;
+                            case "Red":
+                                npcList[i].CurrTarget = patrolPoint;
+                                agentList[i].stoppingDistance = 3;
+                                MoveToTarget(npcList[i], i, distance);
+                                //if (!agentList[i].isStopped)
+                                //    npcList[i].SetRun();
+                                //if (agentList[i].isStopped)
+                                //    npcList[i].SetNotRun();
+                                break;
+                        }
                         npcList[i].CurrTarget = null;
                     }
                 }
@@ -83,6 +91,7 @@ public class CharacterControl : MonoBehaviour
                 {
                     if (npcList != null)
                     {
+                        npcList[i].CurrTarget = null;
                         npcList[i].gameObject.SetActive(false);
                         Debug.Log("Kill ==> " + npcList[i].name);
                         KillActiveNPC(npcList[i]);
@@ -108,7 +117,8 @@ public class CharacterControl : MonoBehaviour
             }
             int index = MinValue();
             //Debug.Log("Closest Target is " + teamManager.RedTeam[index].name + " Requested by " + NPCTransform.name);
-            return teamManager.RedTeam[index].transform;
+            if (index <= teamManager.RedTeam.Count && teamManager.RedTeam.Count > 0)
+                return teamManager.RedTeam[index].transform;
         }
         else if (NPCTransform.tag.Equals("Red"))
         {
@@ -119,7 +129,8 @@ public class CharacterControl : MonoBehaviour
             }
             int index = MinValue();
             //Debug.Log("Closest Target is " + teamManager.BlueTeam[index].name + " Requested by " + NPCTransform.name);
-            return teamManager.BlueTeam[index].transform;
+            if (index <= teamManager.BlueTeam.Count && teamManager.BlueTeam.Count > 0)
+                return teamManager.BlueTeam[index].transform;
         }
         return null;
 
@@ -131,6 +142,33 @@ public class CharacterControl : MonoBehaviour
         //        distanceList.Add(distance);
         //    }
         //}
+    }
+
+    void MoveToTarget(CharacterHandler character, int index, float distance)
+    {
+        if (agentList[index].gameObject.activeSelf)
+        {
+            agentList[index].SetDestination(character.CurrTarget.position);
+            Vector3 targetPosition = character.CurrTarget.position - character.transform.position;
+            //Debug.Log(npcList[i].transform.name + " Facing towards ==> " + currTarget.name + " With X Coordinate ==> " 
+            //    + targetPosition.normalized.x);
+            //Flip if statement
+            if (targetPosition.normalized.x < 0 && character.CharMove.IsFacingLeft == false)
+            {
+                character.CharFlip();
+                character.CharMove.IsFacingLeft = true;
+            }
+            else if (targetPosition.normalized.x > 0 && character.CharMove.IsFacingLeft == true)
+            {
+                character.CharFlip();
+                character.CharMove.IsFacingLeft = false;
+            }
+            //Debug.Log("THIS Tag ==> " + character.tag.ToString() + " >< Target Tag ==> " + character.CurrTarget.tag.ToString() + " With name ==> " + character.CurrTarget.name);
+            if (character.tag.Equals(character.CurrTarget.tag) ==  false && distance <= 1)
+            {
+                Attack(index);
+            }
+        }
     }
 
     int MinValue()
@@ -147,6 +185,14 @@ public class CharacterControl : MonoBehaviour
     public void AddActiveNPC(CharacterHandler character)
     {
         agentList.Add(character.GetComponent<NavMeshAgent>());
+        if (character.tag.Equals("Blue"))
+        {
+            teamManager.BlueTeam.Add(character.gameObject);
+        }
+        else if (character.tag.Equals("Red"))
+        {
+            teamManager.RedTeam.Add(character.gameObject);
+        }
         npcList.Add(character);
     }
     public void KillActiveNPC(CharacterHandler character) 

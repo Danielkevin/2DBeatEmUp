@@ -253,8 +253,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.22598796, y: 0.4465508, z: 0.17502849}
-  m_Center: {x: 0.005507489, y: 0.16901708, z: 0}
+  m_Size: {x: 0.22598796, y: 0.34013647, z: 0.17502849}
+  m_Center: {x: 0.005507489, y: 0.22222428, z: 0}
 --- !u!114 &4902815936773553991
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -268,7 +268,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackPoint: {fileID: 4902815936490023486}
-  attackRange: 0.6
+  attackRange: 0.7
   hostileLayers:
     serializedVersion: 2
     m_Bits: 128

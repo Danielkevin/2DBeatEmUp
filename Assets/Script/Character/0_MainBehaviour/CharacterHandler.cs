@@ -35,5 +35,7 @@ public class CharacterHandler : MonoBehaviour
     {
         return healthPoint;
     }
+    //public void SetRun() => animator.SetBool("isRun", true);
+    //public void SetNotRun() => animator.SetBool("isRun", false);
     #endregion
 }

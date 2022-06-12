@@ -40,12 +40,13 @@ public class PoolingManager : MonoBehaviour
     {
         CharacterHandler blueArmy = bluePool[0];
         blueArmy.transform.position = spawnPositionA.position;
+        blueArmy.transform.rotation = Quaternion.Euler(0,0,0);
+        blueArmy.CharMove.IsFacingLeft = false;
         blueArmy.HealthPoint = blueArmy.CharData.HealthPoint;
         bluePool.Remove(blueArmy);
         bluePool.Add(blueArmy);
         blueArmy.gameObject.SetActive(true);
         charControl.AddActiveNPC(blueArmy);
-        teamManager.BlueTeam.Add(blueArmy.gameObject);
         return blueArmy;
     }
     
@@ -53,13 +54,14 @@ public class PoolingManager : MonoBehaviour
     {
         CharacterHandler redArmy = redPool[0];
         redArmy.transform.position = spawnPositionB.position;
+        redArmy.transform.rotation = Quaternion.Euler(0, 0, 0);
+        redArmy.CharMove.IsFacingLeft = false;
         redArmy.HealthPoint = redArmy.CharData.HealthPoint;
         redPool.Remove(redArmy);
         redPool.Add(redArmy);
         redArmy.gameObject.SetActive(true);
         //Debug.Log("Spawn Position => " + spawnPositionB.position);
         charControl.AddActiveNPC(redArmy);
-        teamManager.RedTeam.Add(redArmy.gameObject);
         return redArmy;
     }
 }
