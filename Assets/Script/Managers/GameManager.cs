@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private float timeToSpawn;
     [SerializeField] private PoolingManager poolingManager;
     [SerializeField] private TeamManager teamManager;
+    [SerializeField] private MenuManager menuManager;
     private int redCasualities;
     [SerializeField] private int maxKilledRed;
     private bool isWin;
@@ -41,12 +42,34 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log("Win");
         isWin = true;
+        StartCoroutine(SetWin());
     }
 
     public void LoseCondition()
     {
         Debug.Log("Lose");
         isLose = true;
+        StartCoroutine(SetLose());
+    }
+
+    public void SetPauseInput()
+    {
+        if (menuManager.GetPauseBool() == false)
+            menuManager.PauseGame();
+        else if (menuManager.GetPauseBool() == true)
+            menuManager.ResumeGame();
+    }
+    
+    IEnumerator SetLose()
+    {
+        yield return new WaitForSeconds(5);
+        menuManager.Defeated();
+    }
+
+    IEnumerator SetWin()
+    {
+        yield return new WaitForSeconds(0.5f);
+        menuManager.Victory();
     }
 
     IEnumerator SpawnTrigger()

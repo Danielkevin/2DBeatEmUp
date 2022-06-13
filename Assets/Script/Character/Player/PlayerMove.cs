@@ -27,8 +27,9 @@ public class PlayerMove : CharacterMove
             Flip();
             isFacingLeft = false;
         }
-        if(Input.GetButtonUp("Fire1"))
+        if(Input.GetButtonDown("Fire1") && isDissableAttack == false)
         {
+            isDissableAttack = true;
             charHandler.SetAttack();
             //Attack();
             Debug.Log("Player call Attack system");

@@ -49,6 +49,7 @@ public class CharacterHandler : MonoBehaviour
     public void SetHurt() => animator.SetTrigger("isHurt");
     public void HideHealthBar() => healthHandler.SetHealthBarInabled();
     public void ShowHealthBar() => healthHandler.SetHealthBarEnabled();
+    public void SetEnableAttack() => CharMove.IsDissableAttack = false;
     public void SetDead()
     { 
         animator.SetBool("isDead", true);

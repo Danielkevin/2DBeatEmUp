@@ -6,7 +6,9 @@ public class CharacterMove : MonoBehaviour
 {
     [SerializeField] protected CharacterHandler charHandler;
     [SerializeField] protected bool isFacingLeft = false;
+    protected bool isDissableAttack;
     public bool IsFacingLeft { get => isFacingLeft; set => isFacingLeft = value; }
+    public bool IsDissableAttack { get => isDissableAttack; set => isDissableAttack = value; }
 
     public virtual void Movement(float moveSpeed)
     {

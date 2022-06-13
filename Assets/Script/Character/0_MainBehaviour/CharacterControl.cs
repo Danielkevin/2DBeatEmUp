@@ -23,7 +23,7 @@ public class CharacterControl : MonoBehaviour
         playerHandler.HealthPoint = playerHandler.CharData.HealthPoint;
     }
 
-    private void FixedUpdate()
+    private void Update()
     {
         PlayerMove();
         NpcMove();
@@ -37,13 +37,18 @@ public class CharacterControl : MonoBehaviour
         }
         else
         {
-            if(playerHandler.Animator.GetCurrentAnimatorStateInfo(0).IsName("GetHit") == false
+            if (playerHandler.Animator.GetCurrentAnimatorStateInfo(0).IsName("GetHit") == false
                 && playerHandler.Animator.GetCurrentAnimatorStateInfo(0).IsName("Death") == false)
                 playerHandler.SetHurt();
             playerHandler.SetDead();
             Debug.Log("Kill ==> " + playerHandler.name);
             gameManager.LoseCondition();
         }
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            gameManager.SetPauseInput();
+        }
+            
     }
 
     //Function di bawah ini merupakan function untuk menggerakan npc baik tim merah maupun putih.
@@ -63,7 +68,7 @@ public class CharacterControl : MonoBehaviour
                     if (npcList[i].CurrTarget != null)
                         distance = (npcList[i].CurrTarget.position - npcList[i].transform.position).magnitude;
                     //Debug.Log(distance);
-                    if (distance <= lookRadius )
+                    if (distance <= lookRadius)
                     {
                         agentList[i].stoppingDistance = 0.7f;
                         MoveToTarget(npcList[i], i, distance);
@@ -144,7 +149,7 @@ public class CharacterControl : MonoBehaviour
         {
             agentList[index].SetDestination(character.CurrTarget.position);
             Vector3 targetPosition = character.CurrTarget.position - character.transform.position;
-            
+
             //Flip if statement
             if (targetPosition.normalized.x < 0 && character.CharMove.IsFacingLeft == false)
             {
@@ -195,18 +200,18 @@ public class CharacterControl : MonoBehaviour
         }
         npcList.Add(character);
     }
-    public void KillActiveNPC(CharacterHandler character) 
+    public void KillActiveNPC(CharacterHandler character)
     {
-        if(character.tag.Equals("Blue"))
+        if (character.tag.Equals("Blue"))
         {
             teamManager.BlueTeam.Remove(character.gameObject);
         }
-        else if(character.tag.Equals("Red"))
+        else if (character.tag.Equals("Red"))
         {
             teamManager.RedTeam.Remove(character.gameObject);
         }
         agentList.Remove(character.GetComponent<NavMeshAgent>());
-        npcList.Remove(character); 
+        npcList.Remove(character);
     }
 
     void Attack(int index)

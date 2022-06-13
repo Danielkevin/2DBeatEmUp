@@ -15,4 +15,4 @@ MonoBehaviour:
   movementSpeed: 5
   healthPoint: 60
   atkDmg: 20
-  rateOfAtk: 1
+  rateOfAtk: 0.75
