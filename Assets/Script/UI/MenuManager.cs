@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class MenuManager : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class MenuManager : MonoBehaviour
     [SerializeField] private GameObject pauseMenu;
     [SerializeField] private GameObject LoseMenu;
     [SerializeField] private GameObject WinMenu;
+    [SerializeField] private TextMeshProUGUI Score;
 
     public void StartGame() 
     {
@@ -17,6 +19,7 @@ public class MenuManager : MonoBehaviour
     }
 
     public void QuitGame() => Application.Quit();
+    public void UpdateScore(int casualities) => Score.text = casualities.ToString();
 
     public void PauseGame()
     {

@@ -12,7 +12,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private PoolingManager poolingManager;
     [SerializeField] private TeamManager teamManager;
     [SerializeField] private MenuManager menuManager;
-    private int redCasualities;
+    private int redCasualities = 0;
     [SerializeField] private int maxKilledRed;
     private bool isWin;
     private bool isLose;
@@ -27,11 +27,13 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         StartCoroutine(SpawnTrigger());
+        menuManager.UpdateScore(redCasualities);
     }
 
     public void AddCasualities()
     {
         redCasualities++;
+        menuManager.UpdateScore(redCasualities);
         if(redCasualities>=maxKilledRed)
         {
             WinCondition();
