@@ -16,3 +16,5 @@ MonoBehaviour:
   healthPoint: 60
   atkDmg: 20
   rateOfAtk: 1
+  charAnimator: {fileID: 9100000, guid: ee0be8e9239008a489551e6106a3fa2a, type: 2}
+  size: {x: 2, y: 2, z: 2}

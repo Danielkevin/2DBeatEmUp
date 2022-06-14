@@ -20,6 +20,10 @@ public class CharacterAttack : MonoBehaviour
                 charComponent.GetHit(charHandler.CharData.AtkDmg);
             Debug.Log("HIT!!  ==>   " + hostile.name + " By " + this.name);
         }
+        if (charHitList == null)
+            charHandler.PlaySound("Miss");
+        else
+            charHandler.PlaySound("Hit");
         charHitList.Clear();
     }
 

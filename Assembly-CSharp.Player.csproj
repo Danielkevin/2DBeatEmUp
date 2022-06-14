@@ -68,12 +68,11 @@
     <Compile Include="Assets\Script\Managers\GameManager.cs" />
     <Compile Include="Assets\Script\Character\0_MainBehaviour\CharacterData.cs" />
     <Compile Include="Assets\Script\Character\0_MainBehaviour\CharacterAttack.cs" />
+    <Compile Include="Assets\Script\UI\MenuManager.cs" />
     <Compile Include="Assets\Script\UI\HealthBar.cs" />
-    <Compile Include="Assets\Script\Managers\StateManager.cs" />
     <Compile Include="Assets\Script\Character\NPC\TeamManager.cs" />
     <Compile Include="Assets\Script\Character\0_MainBehaviour\CharacterControl.cs" />
-    <Compile Include="Assets\Script\Managers\State.cs" />
-    <Compile Include="Assets\Script\UI\MenuManager.cs" />
+    <Compile Include="Assets\Script\Managers\AudioManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

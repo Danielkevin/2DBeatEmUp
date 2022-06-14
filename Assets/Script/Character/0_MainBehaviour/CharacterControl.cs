@@ -16,11 +16,13 @@ public class CharacterControl : MonoBehaviour
     [SerializeField] TeamManager teamManager;
     #endregion
 
-    public GameManager GameManager { get => gameManager; set => gameManager = value; }
 
     private void Awake()
     {
         playerHandler.HealthPoint = playerHandler.CharData.HealthPoint;
+        playerHandler.SetUpHealth();
+        playerHandler.SetUpAnimator();
+        playerHandler.SetUpScale();
     }
 
     private void Update()
@@ -70,12 +72,16 @@ public class CharacterControl : MonoBehaviour
                     //Debug.Log(distance);
                     if (distance <= lookRadius)
                     {
+                        if (!npcList[i].GetIsPlaySound("WarCry") && !gameManager.MenuManager.GetPauseBool())
+                            npcList[i].PlaySound("WarCry");
                         agentList[i].stoppingDistance = 0.7f;
                         MoveToTarget(npcList[i], i, distance);
                         npcList[i].CurrTarget = null;
                     }
                     else
                     {
+                        if (npcList[i].GetIsPlaySound("WarCry") && !gameManager.MenuManager.GetPauseBool())
+                            npcList[i].StopSound("WarCry");
                         switch (npcList[i].tag)
                         {
                             case "Blue":
@@ -164,9 +170,17 @@ public class CharacterControl : MonoBehaviour
 
             //Debug.Log(distance + " <= Distance <= " + agentList[index].name + " => stopping distance => " + agentList[index].stoppingDistance);
             if (distance > agentList[index].stoppingDistance)
+            {
                 character.SetRun();
+                if (!character.GetIsPlaySound("Run"))
+                    character.PlaySound("Run");
+            }
             if (distance <= agentList[index].stoppingDistance)
+            {
                 character.SetNotRun();
+                if (character.GetIsPlaySound("Run"))
+                    character.StopSound("Run");
+            }
 
             if (character.tag.Equals(character.CurrTarget.tag) == false && distance <= 1 && !character.CurrTarget.tag.Equals("PatrolPoint"))
             {

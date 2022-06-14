@@ -12,17 +12,15 @@ public class GameManager : MonoBehaviour
     [SerializeField] private PoolingManager poolingManager;
     [SerializeField] private TeamManager teamManager;
     [SerializeField] private MenuManager menuManager;
+    [SerializeField] private AudioManager audioManager;
     private int redCasualities = 0;
     [SerializeField] private int maxKilledRed;
     private bool isWin;
     private bool isLose;
 
-    public List<Transform> RedSpawnPosition { get => redSpawnPosition; set => redSpawnPosition = value; }
-    public List<Transform> BlueSpawnPosition { get => blueSpawnPosition; set => blueSpawnPosition = value; }
     public int MaxRedCount { get => maxRedCount; set => maxRedCount = value; }
     public int MaxBlueCount { get => maxBlueCount; set => maxBlueCount = value; }
-    public PoolingManager PoolingManager { get => poolingManager; set => poolingManager = value; }
-    public TeamManager TeamManager { get => teamManager; set => teamManager = value; }
+    public MenuManager MenuManager { get => menuManager; set => menuManager = value; }
 
     private void Start()
     {

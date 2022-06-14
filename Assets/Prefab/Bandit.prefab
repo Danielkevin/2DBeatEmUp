@@ -205,6 +205,7 @@ GameObject:
   - component: {fileID: 4902815936773554013}
   - component: {fileID: 6536672982299313218}
   - component: {fileID: 1076923049287967289}
+  - component: {fileID: 2957073426511188859}
   m_Layer: 6
   m_Name: Bandit
   m_TagString: Red
@@ -269,7 +270,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 5
-  m_Sprite: {fileID: 1509690687825009327, guid: 9a497a587be8d1248b7f5612f8fec717, type: 3}
+  m_Sprite: {fileID: -5381185698364048818, guid: 1dfcbce86431e9b4ab70fb719a75cebe, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -368,6 +369,7 @@ MonoBehaviour:
   healthPoint: 0
   animator: {fileID: 1076923049287967289}
   boxCollider: {fileID: 4902815936773553985}
+  audioManager: {fileID: 2957073426511188859}
 --- !u!114 &4902815936773554013
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -414,6 +416,55 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &2957073426511188859
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4902815936773553988}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 592ab198782d927448a5efa88ce9810b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - name: Run
+    clip: {fileID: 8300000, guid: eb6d69beaa18ae34dbfe1fc7ed8d4e69, type: 3}
+    volume: 0.082
+    pitch: 1
+    loop: 1
+    playOnAwake: 0
+  - name: Miss
+    clip: {fileID: 8300000, guid: 9c2b86c01ffd9d1408650cde031195c0, type: 3}
+    volume: 0.39
+    pitch: 1
+    loop: 0
+    playOnAwake: 0
+  - name: Hit
+    clip: {fileID: 8300000, guid: 9b4595a6a767af54e935b2187dd06115, type: 3}
+    volume: 0.39
+    pitch: 1
+    loop: 0
+    playOnAwake: 0
+  - name: Kill
+    clip: {fileID: 8300000, guid: 3d72ebe22b81e134099264197e26592a, type: 3}
+    volume: 0.39
+    pitch: 1
+    loop: 0
+    playOnAwake: 0
+  - name: Ded
+    clip: {fileID: 8300000, guid: 14a82ed03bb139f4baa5dc21c444a868, type: 3}
+    volume: 0.39
+    pitch: 1
+    loop: 0
+    playOnAwake: 0
+  - name: WarCry
+    clip: {fileID: 8300000, guid: 555167ba696b95541b4469a9d7f9c8b8, type: 3}
+    volume: 0.39
+    pitch: 1
+    loop: 0
+    playOnAwake: 0
 --- !u!1 &7697424536675477909
 GameObject:
   m_ObjectHideFlags: 0

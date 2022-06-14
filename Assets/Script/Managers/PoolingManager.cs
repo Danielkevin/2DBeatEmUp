@@ -60,6 +60,8 @@ public class PoolingManager : MonoBehaviour
         army.ShowHealthBar();
         army.HealthPoint = army.CharData.HealthPoint;
         army.SetUpHealth();
+        army.SetUpAnimator();
+        army.SetUpScale();
         army.gameObject.SetActive(true);
         charControl.AddActiveNPC(army);
         return army;

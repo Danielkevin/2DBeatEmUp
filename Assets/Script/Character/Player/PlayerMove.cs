@@ -12,10 +12,13 @@ public class PlayerMove : CharacterMove
         if(x!=0 || z != 0)
         {
             charHandler.Animator.SetBool("isRun", true);
+            if(charHandler.GetIsPlaySound("Run") == false)
+                charHandler.PlaySound("Run");
         }
         else
         {
             charHandler.Animator.SetBool("isRun", false);
+                charHandler.StopSound("Run");
         }
         if (x < 0 && !isFacingLeft)
         {

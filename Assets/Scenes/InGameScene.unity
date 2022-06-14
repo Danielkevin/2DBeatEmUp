@@ -4017,7 +4017,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -637, y: 50}
+  m_AnchoredPosition: {x: -637, y: 93.99993}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &742695664
@@ -4195,6 +4195,18 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 776975332}
+        m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
+        m_MethodName: Play
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: ButtonPressed
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &742854345
@@ -4457,6 +4469,7 @@ GameObject:
   - component: {fileID: 776975327}
   - component: {fileID: 776975330}
   - component: {fileID: 776975331}
+  - component: {fileID: 776975332}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -4524,7 +4537,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 037b145a58312234fbaeb2a551e3317c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxRedCount: 17
+  maxRedCount: 18
   redSpawnPosition:
   - {fileID: 151517414}
   - {fileID: 737807639}
@@ -4546,6 +4559,7 @@ MonoBehaviour:
   poolingManager: {fileID: 776975331}
   teamManager: {fileID: 776975327}
   menuManager: {fileID: 1336655241}
+  audioManager: {fileID: 776975332}
   maxKilledRed: 100
 --- !u!114 &776975331
 MonoBehaviour:
@@ -4567,6 +4581,31 @@ MonoBehaviour:
   maxCountRed: 20
   redPrefab: {fileID: 4902815936773553990, guid: ebf8699ee388ce846af827841d50b613, type: 3}
   redPool: []
+--- !u!114 &776975332
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 776975326}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 592ab198782d927448a5efa88ce9810b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - name: BGM
+    clip: {fileID: 8300000, guid: 05a1c1cf77085d347ad58c61958a8fdd, type: 3}
+    volume: 0.768
+    pitch: 1
+    loop: 1
+    playOnAwake: 0
+  - name: ButtonPressed
+    clip: {fileID: 8300000, guid: 106c0c0bb89e63943a16c0078cb21da0, type: 3}
+    volume: 0.919
+    pitch: 1
+    loop: 0
+    playOnAwake: 0
 --- !u!4 &782042503 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 1914de6d952827842b2058cf2853e7dc, type: 3}
@@ -7859,6 +7898,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 776975332}
+        m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
+        m_MethodName: Play
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: ButtonPressed
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1372030048
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8064,6 +8115,18 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 776975332}
+        m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
+        m_MethodName: Play
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: ButtonPressed
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1382868555
@@ -8274,7 +8337,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -710.00073, y: 126}
+  m_AnchoredPosition: {x: -710.00073, y: 169.99994}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1398064756
@@ -8395,7 +8458,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -710.00073, y: 50}
+  m_AnchoredPosition: {x: -710.00073, y: 93.99993}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1407931751
@@ -8968,6 +9031,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 776975332}
+        m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
+        m_MethodName: Play
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: ButtonPressed
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1443275772
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9302,6 +9377,7 @@ GameObject:
   - component: {fileID: 1497087846}
   - component: {fileID: 1497087848}
   - component: {fileID: 1497087849}
+  - component: {fileID: 1497087850}
   m_Layer: 7
   m_Name: Player
   m_TagString: Blue
@@ -9456,6 +9532,7 @@ MonoBehaviour:
   healthPoint: 0
   animator: {fileID: 1497087847}
   boxCollider: {fileID: 1497087843}
+  audioManager: {fileID: 1497087850}
 --- !u!95 &1497087847
 Animator:
   serializedVersion: 3
@@ -9501,6 +9578,49 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.001
   m_Center: {x: 0.23377186, y: 0.0026249867, z: 0}
+--- !u!114 &1497087850
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1497087839}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 592ab198782d927448a5efa88ce9810b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - name: Run
+    clip: {fileID: 8300000, guid: eb6d69beaa18ae34dbfe1fc7ed8d4e69, type: 3}
+    volume: 0.6
+    pitch: 1
+    loop: 1
+    playOnAwake: 0
+  - name: Miss
+    clip: {fileID: 8300000, guid: 9c2b86c01ffd9d1408650cde031195c0, type: 3}
+    volume: 0.65
+    pitch: 1
+    loop: 0
+    playOnAwake: 0
+  - name: Hit
+    clip: {fileID: 8300000, guid: 9b4595a6a767af54e935b2187dd06115, type: 3}
+    volume: 0.65
+    pitch: 1
+    loop: 0
+    playOnAwake: 0
+  - name: Kill
+    clip: {fileID: 8300000, guid: 3d72ebe22b81e134099264197e26592a, type: 3}
+    volume: 0.65
+    pitch: 1
+    loop: 0
+    playOnAwake: 0
+  - name: Ded
+    clip: {fileID: 8300000, guid: b3d8858c7300ad749a8ddd3073b096b8, type: 3}
+    volume: 0.65
+    pitch: 1
+    loop: 0
+    playOnAwake: 0
 --- !u!1001 &1533342660
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10699,6 +10819,18 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 776975332}
+        m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
+        m_MethodName: Play
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: ButtonPressed
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1713783245
@@ -12505,9 +12637,9 @@ MonoBehaviour:
   m_HandleRect: {fileID: 0}
   m_Direction: 0
   m_MinValue: 0
-  m_MaxValue: 120
+  m_MaxValue: 200
   m_WholeNumbers: 0
-  m_Value: 120
+  m_Value: 200
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -13207,6 +13339,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 776975332}
+        m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
+        m_MethodName: Play
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: ButtonPressed
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2020512588
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13415,7 +13559,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -779.00073, y: 50}
+  m_AnchoredPosition: {x: -779.00073, y: 94}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2034510786
@@ -14460,6 +14604,18 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 776975332}
+        m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
+        m_MethodName: Play
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: ButtonPressed
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &2144582395

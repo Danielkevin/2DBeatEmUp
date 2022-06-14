@@ -14,7 +14,8 @@ public class MenuManager : MonoBehaviour
 
     public void StartGame() 
     {
-        ResumeGame();
+        isPaused = false;
+        Time.timeScale = 1;
         SceneManager.LoadScene(1); 
     }
 
@@ -24,15 +25,13 @@ public class MenuManager : MonoBehaviour
     public void PauseGame()
     {
         pauseMenu.SetActive(true);
-        isPaused = true;
-        Time.timeScale = 0f;
+        Swap();
     }
     
     public void ResumeGame()
     {
         pauseMenu.SetActive(false);
-        isPaused = false;
-        Time.timeScale = 1f;
+        Swap();
     }
 
     public void LoadMenu() 
@@ -44,16 +43,19 @@ public class MenuManager : MonoBehaviour
     public void Defeated()
     {
         LoseMenu.SetActive(true);
-        isPaused = true;
-        Time.timeScale = 0f;
+        Swap();
     }
 
     public void Victory()
     {
         WinMenu.SetActive(true);
-        isPaused = true;
-        Time.timeScale = 0f;
+        Swap();
     }
 
+    void Swap()
+    {
+        isPaused = !isPaused;
+        Time.timeScale = (Time.timeScale + 1) % 2;
+    }
     public bool GetPauseBool() => isPaused;
 }
